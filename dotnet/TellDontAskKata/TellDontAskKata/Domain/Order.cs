@@ -24,10 +24,5 @@ namespace TellDontAskKata.Domain
         {
             return new Order { Status = orderStatus, Id = 1 };
         }
-
-        public void DefaultOrder()
-        {
-        
-        }
     }
 }

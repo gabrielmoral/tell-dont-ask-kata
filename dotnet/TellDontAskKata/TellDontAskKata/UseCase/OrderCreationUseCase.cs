@@ -20,7 +20,6 @@ namespace TellDontAskKata.UseCase
         public void Run(SellItemsRequest request)
         {
             var order = new Order();
-            order.DefaultOrder();
 
             foreach (var itemRequest in request.Requests)
             {
