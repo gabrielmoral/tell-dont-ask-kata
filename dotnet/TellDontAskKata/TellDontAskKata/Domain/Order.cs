@@ -10,5 +10,10 @@ namespace TellDontAskKata.Domain
         public decimal Tax { get; set; }
         public OrderStatus Status { get; set; }
         public int Id { get; set; }
+
+        public static Order InitialOrder(OrderStatus orderStatus)
+        {
+            return new Order { Status = orderStatus, Id = 1 };
+        }
     }
 }

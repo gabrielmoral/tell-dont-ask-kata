@@ -26,7 +26,7 @@ namespace TellDontAskKata.Tests.UseCases
         [Fact]
         public void ShipApprovedOrder()
         {
-            Order initialOrder = OrderApprovalUseCaseTest.InitialOrder(OrderStatus.Approved);
+            Order initialOrder = Order.InitialOrder(OrderStatus.Approved);
             orderRepository.AddOrder(initialOrder);
 
             OrderShipmentRequest request = new OrderShipmentRequest { OrderId = 1 };
@@ -40,7 +40,7 @@ namespace TellDontAskKata.Tests.UseCases
         [Fact]
         public void CreatedOrdersCannotBeShipped()
         {
-            Order initialOrder = OrderApprovalUseCaseTest.InitialOrder(OrderStatus.Created);
+            Order initialOrder = Order.InitialOrder(OrderStatus.Created);
             orderRepository.AddOrder(initialOrder);
 
             OrderShipmentRequest request = new OrderShipmentRequest { OrderId = 1 };
@@ -55,7 +55,7 @@ namespace TellDontAskKata.Tests.UseCases
         [Fact]
         public void RejectedOrdersCannotBeShipped()
         {
-            Order initialOrder = OrderApprovalUseCaseTest.InitialOrder(OrderStatus.Rejected);
+            Order initialOrder = Order.InitialOrder(OrderStatus.Rejected);
             orderRepository.AddOrder(initialOrder);
 
             OrderShipmentRequest request = new OrderShipmentRequest { OrderId = 1 };
@@ -70,7 +70,7 @@ namespace TellDontAskKata.Tests.UseCases
         [Fact]
         public void ShippedOrdersCannotBeShippedAgain()
         {
-            Order initialOrder = OrderApprovalUseCaseTest.InitialOrder(OrderStatus.Shipped);
+            Order initialOrder = Order.InitialOrder(OrderStatus.Shipped);
             orderRepository.AddOrder(initialOrder);
 
             OrderShipmentRequest request = new OrderShipmentRequest
