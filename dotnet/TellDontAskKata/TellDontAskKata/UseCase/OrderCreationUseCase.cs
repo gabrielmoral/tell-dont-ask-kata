@@ -19,14 +19,8 @@ namespace TellDontAskKata.UseCase
 
         public void Run(SellItemsRequest request)
         {
-            var order = new Order
-            {
-                Status = OrderStatus.Created,
-                Items = new List<OrderItem>(),
-                Currency = "EUR",
-                Total = 0.0m,
-                Tax = 0.0m
-            };
+            var order = new Order();
+            DefaultOrder(order);
 
             foreach (var itemRequest in request.Requests)
             {
@@ -63,6 +57,15 @@ namespace TellDontAskKata.UseCase
                 }
             }
             orderRepository.Save(order);
+        }
+
+        private static void DefaultOrder(Order order)
+        {
+            order.Status = OrderStatus.Created;
+            order.Items = new List<OrderItem>();
+            order.Currency = "EUR";
+            order.Total = 0.0m;
+            order.Tax = 0.0m;
         }
     }
 }
