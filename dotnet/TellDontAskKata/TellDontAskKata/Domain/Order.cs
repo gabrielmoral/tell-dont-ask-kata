@@ -16,13 +16,13 @@ namespace TellDontAskKata.Domain
             return new Order { Status = orderStatus, Id = 1 };
         }
 
-        public static void DefaultOrder(Order order)
+        public void DefaultOrder()
         {
-            order.Status = OrderStatus.Created;
-            order.Items = new List<OrderItem>();
-            order.Currency = "EUR";
-            order.Total = 0.0m;
-            order.Tax = 0.0m;
+            Status = OrderStatus.Created;
+            Items = new List<OrderItem>();
+            Currency = "EUR";
+            Total = 0.0m;
+            Tax = 0.0m;
         }
     }
 }
