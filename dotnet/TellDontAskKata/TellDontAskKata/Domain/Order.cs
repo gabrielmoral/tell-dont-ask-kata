@@ -27,11 +27,7 @@ namespace TellDontAskKata.Domain
 
         public void DefaultOrder()
         {
-            Status = OrderStatus.Created;
-            Items = new List<OrderItem>();
-            Currency = "EUR";
-            Total = 0.0m;
-            Tax = 0.0m;
+        
         }
     }
 }
