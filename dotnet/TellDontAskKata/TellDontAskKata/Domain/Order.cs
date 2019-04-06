@@ -6,7 +6,11 @@ namespace TellDontAskKata.Domain
     {
         public Order()
         {
-            DefaultOrder();
+            Status = OrderStatus.Created;
+            Items = new List<OrderItem>();
+            Currency = "EUR";
+            Total = 0.0m;
+            Tax = 0.0m;
         }
         
         public decimal Total { get; set; }
