@@ -23,7 +23,7 @@ namespace TellDontAskKata.Tests.UseCases
         [Fact]
         public void ApprovedExistingOrder()
         {
-            Order initialOrder = new Order { Status = OrderStatus.Created, Id = 1 };
+            Order initialOrder = InitialOrder(OrderStatus.Created);
             orderRepository.AddOrder(initialOrder);
             OrderApprovalRequest request = new OrderApprovalRequest { OrderId = 1, Approved = true };
 
@@ -35,7 +35,7 @@ namespace TellDontAskKata.Tests.UseCases
         [Fact]
         public void RejectExistingOrder()
         {
-            Order initialOrder = new Order { Status = OrderStatus.Created, Id = 1 };
+            Order initialOrder = InitialOrder(OrderStatus.Created);
             orderRepository.AddOrder(initialOrder);
             OrderApprovalRequest request = new OrderApprovalRequest { OrderId = 1, Approved = false };
 
@@ -47,7 +47,7 @@ namespace TellDontAskKata.Tests.UseCases
         [Fact]
         public void CannotApproveRejectedOrderBy()
         {
-            Order initialOrder = new Order { Status = OrderStatus.Rejected, Id = 1 };
+            Order initialOrder = InitialOrder(OrderStatus.Rejected);
             orderRepository.AddOrder(initialOrder);
             OrderApprovalRequest request = new OrderApprovalRequest { OrderId = 1, Approved = true };
 
@@ -59,7 +59,7 @@ namespace TellDontAskKata.Tests.UseCases
         [Fact]
         public void CannotRejectApprovedOrder()
         {
-            Order initialOrder = new Order { Status = OrderStatus.Approved, Id = 1 };
+            Order initialOrder = InitialOrder(OrderStatus.Approved);
             orderRepository.AddOrder(initialOrder);
             OrderApprovalRequest request = new OrderApprovalRequest { OrderId = 1, Approved = false };
 
@@ -71,7 +71,7 @@ namespace TellDontAskKata.Tests.UseCases
         [Fact]
         public void ShippedOrdersCannotBeApproved()
         {
-            Order initialOrder = new Order { Status = OrderStatus.Shipped, Id = 1 };
+            Order initialOrder = InitialOrder(OrderStatus.Shipped);
             orderRepository.AddOrder(initialOrder);
             OrderApprovalRequest request = new OrderApprovalRequest { OrderId = 1, Approved = true };
 
@@ -80,10 +80,15 @@ namespace TellDontAskKata.Tests.UseCases
             Assert.Throws<ShippedOrdersCannotBeChangedException>(runAction);
         }
 
+        public static Order InitialOrder(OrderStatus orderStatus)
+        {
+            return new Order { Status = orderStatus, Id = 1 };
+        }
+
         [Fact]
         public void ShippedOrdersCannotBeRejected()
         {
-            Order initialOrder = new Order { Status = OrderStatus.Shipped, Id = 1 };
+            Order initialOrder = InitialOrder(OrderStatus.Shipped);
             orderRepository.AddOrder(initialOrder);
             OrderApprovalRequest request = new OrderApprovalRequest { OrderId = 1, Approved = false };
 
