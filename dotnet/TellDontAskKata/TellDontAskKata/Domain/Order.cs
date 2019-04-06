@@ -4,6 +4,11 @@ namespace TellDontAskKata.Domain
 {
     public class Order
     {
+        public Order()
+        {
+            DefaultOrder();
+        }
+        
         public decimal Total { get; set; }
         public string Currency { get; set; }
         public List<OrderItem> Items { get; set; }
