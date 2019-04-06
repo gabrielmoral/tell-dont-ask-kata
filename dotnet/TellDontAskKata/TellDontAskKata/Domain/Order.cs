@@ -14,11 +14,11 @@ namespace TellDontAskKata.Domain
         }
         
         public decimal Total { get; set; }
-        public string Currency { get; set; }
-        public List<OrderItem> Items { get; set; }
+        public string Currency { get; }
+        public List<OrderItem> Items { get; }
         public decimal Tax { get; set; }
         public OrderStatus Status { get; set; }
-        public int Id { get; set; }
+        public int Id { get; private set; }
 
         public static Order InitialOrder(OrderStatus orderStatus)
         {
